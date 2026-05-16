@@ -1,12 +1,10 @@
 package tobyspring.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
 
@@ -26,7 +24,7 @@ class MemberTest {
             }
 
         };
-        member = Member.create(new MemberCreateRequest("jac@splear.app", "Toby", "secret"), passwordEncoder);
+        member = Member.register(new MemberRegisterRequest("jac@splear.app", "Toby", "secret"), passwordEncoder);
     }
     @Test
     void createMember() {
@@ -124,10 +122,10 @@ class MemberTest {
 
     @Test
     void invalidEmail() {
-        assertThatThrownBy(() -> Member.create(new MemberCreateRequest("invalid email", "toby", "secret"), passwordEncoder)
+        assertThatThrownBy(() -> Member.register(new MemberRegisterRequest("invalid email", "toby", "secret"), passwordEncoder)
         ).isInstanceOf(IllegalArgumentException.class);
 
-        Member.create(new MemberCreateRequest("invalid@gmail.com", "toby", "secret"), passwordEncoder);
+        Member.register(new MemberRegisterRequest("invalid@gmail.com", "toby", "secret"), passwordEncoder);
     }
 
 

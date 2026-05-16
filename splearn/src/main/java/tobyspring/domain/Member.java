@@ -1,11 +1,7 @@
 package tobyspring.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 import static java.util.Objects.*;
 import static org.springframework.util.Assert.*;
@@ -26,7 +22,7 @@ public class Member {
 
     }
 
-    public static  Member create(MemberCreateRequest createRequest, PasswordEncoder passwordEncoder ){
+    public static  Member register(MemberRegisterRequest createRequest, PasswordEncoder passwordEncoder ){
         Member member = new Member();
 
         member.email = new Email(createRequest.email());
