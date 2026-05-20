@@ -5,3 +5,4 @@ public interface PasswordEncoder {
 
     boolean matches(String password, String passwordHash);
 }
+
