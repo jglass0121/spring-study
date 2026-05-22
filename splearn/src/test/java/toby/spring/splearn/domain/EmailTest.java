@@ -1,0 +1,16 @@
+package toby.spring.splearn.domain;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+class EmailTest {
+
+    @Test
+    void equality(){
+        var email1 = new Email("toby@splern.app");
+        var email2 = new Email("toby@splern.app");
+
+        assertThat(email1).isEqualTo(email2);
+    }
+}
