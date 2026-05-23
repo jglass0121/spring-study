@@ -1,5 +1,7 @@
 package toby.spring.splearn.application.required;
+
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -7,10 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import toby.spring.splearn.SplearnApplication;
 import toby.spring.splearn.domain.Member;
 import toby.spring.splearn.domain.MemberFixture;
-import org.junit.jupiter.api.Test;
-import toby.spring.splearn.domain.MemberRegisterRequest;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @DataJpaTest
