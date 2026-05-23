@@ -12,9 +12,9 @@ import toby.spring.splearn.domain.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+//@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL) -resource에 넣음
 @SpringBootTest
 @Import(SplearnTestConfiguration.class)
-//@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL) -resource에 넣음
 @Transactional
 record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityManager) {
 

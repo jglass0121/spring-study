@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.TestConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import toby.spring.splearn.SplearnTestConfiguration;
 import toby.spring.splearn.domain.Member;
@@ -12,8 +13,10 @@ import toby.spring.splearn.domain.MemberFixture;
 
 
 @SpringBootTest
-@Import(SplearnTestConfiguration.class)
 @Transactional
+@Import(SplearnTestConfiguration.class)
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+
 record MemberFinderTest(MemberFinder memberFinder, MemberRegister memberRegister, EntityManager entityManager) {
 
     @Test

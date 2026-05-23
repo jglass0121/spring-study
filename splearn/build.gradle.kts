@@ -1,9 +1,8 @@
 plugins {
     java
-    id("org.springframework.boot") version "4.0.6"
+    id("org.springframework.boot") version "3.5.14"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.github.spotbugs") version "6.5.4" // Null 체크를 위해 사용
-
 }
 
 group = "tobyspring"
@@ -19,6 +18,8 @@ java {
 repositories {
     mavenCentral()
 }
+val mockitoAgent: Configuration = configurations.create("mockitoAgent")
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -36,13 +37,21 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation("org.mockito:mockito-core:5.18.0")
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.4.1")
+    mockitoAgent("org.mockito:mockito-core:5.18.0") { isTransitive = false }
+
 
 
 }
 
-
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }

@@ -3,10 +3,12 @@ package toby.spring.splearn.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Transactional
 class MemberTest {
 
     Member member;
@@ -84,13 +86,13 @@ class MemberTest {
 
     @Test
     void verifyPassword() {
-        assertThat(member.verifyPassword("verysercet2", passwordEncoder)).isTrue();
+        assertThat(member.verifyPassword("verysecret", passwordEncoder)).isTrue();
         assertThat(member.verifyPassword("hello", passwordEncoder)).isFalse();
     }
 
     @Test
     void changeNickname() {
-        assertThat(member.getNickname()).isEqualTo("charlie");
+        assertThat(member.getNickname()).isEqualTo("Charlie");
         member.changeNickname("charlie2");
         assertThat(member.getNickname()).isEqualTo("charlie2");
     }

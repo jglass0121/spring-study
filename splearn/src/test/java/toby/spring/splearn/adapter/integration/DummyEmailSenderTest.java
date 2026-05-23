@@ -16,7 +16,7 @@ class DummyEmailSenderTest {
         DummyEmailSender dummyEmailSender = new DummyEmailSender();
         dummyEmailSender.send(new Email("toby@splaen.app"), "subject", "body");
 
-        Assertions.assertThat(out.capturedLines()[0]).isEqualTo("");
+        Assertions.assertThat(out.capturedLines()[0]).isEqualTo("Dummy EmailSender send email : Email[address=toby@splaen.app]");
 
 
     }
