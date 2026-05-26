@@ -10,19 +10,16 @@ import org.hibernate.annotations.NaturalIdCache;
 
 import static java.util.Objects.requireNonNull;
 import static org.springframework.util.Assert.state;
+import static toby.spring.splearn.domain.MemberStatus.*;
 
-
+//xml은 Annotation 설정을  override한다 = 문법 명확,
+// 우선순위 : xml > Annotation
 @Entity
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache // DB에 가지 않고 영속성 컨테스트에서 가져옴
-public class Member {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Embedded
+public class Member extends AbstractEntity {
     @NaturalId
     private Email  email;
 
@@ -30,7 +27,6 @@ public class Member {
 
     private String passwordHash;
 
-    @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
 
@@ -41,7 +37,7 @@ public class Member {
         member.nickname = requireNonNull(createRequest.nickname());
         member.passwordHash = requireNonNull(passwordEncoder.encode(createRequest.password()));
 
-        member.status = MemberStatus.PENDING;
+        member.status = PENDING;
 
         return member;
     }
@@ -50,15 +46,15 @@ public class Member {
 //            throw new IllegalStateException("PENDING 상태가 아닙니다.");
 //        }
         // 코드 간결
-        state(status == MemberStatus.PENDING, "PENDING 상태가 아닙니다.");
+        state(status == PENDING, "PENDING 상태가 아닙니다.");
 
-        this.status = MemberStatus.ACTIVE;
+        this.status = ACTIVE;
     }
 
     public void deactivate() {
-        state(status == MemberStatus.ACTIVE, "ACTIVE 상태가 아닙니다.");
+        state(status == ACTIVE, "ACTIVE 상태가 아닙니다.");
 
-        this.status = MemberStatus.DEACTIVATED;
+        this.status = DEACTIVATED;
 
     }
 
@@ -75,7 +71,7 @@ public class Member {
     }
 
     public boolean isActive() {
-        return this.status == MemberStatus.ACTIVE;
+        return this.status == ACTIVE;
 
     }
 }

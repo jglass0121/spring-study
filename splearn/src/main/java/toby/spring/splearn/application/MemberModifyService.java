@@ -10,14 +10,14 @@ import toby.spring.splearn.application.required.EmailSender;
 import toby.spring.splearn.application.required.MemberRepository;
 import toby.spring.splearn.domain.*;
 
-@Service
-@Transactional
-@Validated
-@RequiredArgsConstructor
 /**
  * 문제 : 조회 변경을 함께 두면 의존하는 오브젝트가 점점 달라지기 시작하여 혼란스럽더
  * 해결 : 조회와 변경을 각각 분리
  */
+@Service
+@Transactional
+@Validated
+@RequiredArgsConstructor
 public class MemberModifyService implements MemberRegister {
 
     private final MemberFinder memberFinder;

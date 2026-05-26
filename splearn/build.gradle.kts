@@ -28,7 +28,7 @@ dependencies {
     implementation("org.springframework.security:spring-security-core")
 
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
+    developmentOnly("org.springframework.boot:spring-boot-docker-compose")  // docker compose 자동 실행
     runtimeOnly("com.h2database:h2")
     runtimeOnly("com.mysql:mysql-connector-j")
 
