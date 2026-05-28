@@ -14,14 +14,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 //@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL) -resource에 넣음
 @SpringBootTest
-@Import(SplearnTestConfiguration.class)
 @Transactional
+@Import(SplearnTestConfiguration.class)
 record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityManager) {
 
     @Test
     void register() {
         //TestConfiguration에서 실행
         Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
+        System.out.println(member);
 
         assertThat(member.getId()).isNotNull();
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);

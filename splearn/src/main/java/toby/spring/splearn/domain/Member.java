@@ -16,22 +16,21 @@ import static toby.spring.splearn.domain.MemberStatus.*;
 // 우선순위 : xml > Annotation
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache // DB에 가지 않고 영속성 컨테스트에서 가져옴
 public class Member extends AbstractEntity {
     @NaturalId
-    private Email email;
+    private Email  email;
 
     private String nickname;
 
     private String passwordHash;
 
     private MemberStatus status;
-    private MemberDetail detail;
 
 
-    public static Member register(MemberRegisterRequest createRequest, PasswordEncoder passwordEncoder) {
+    public static  Member register(MemberRegisterRequest createRequest, PasswordEncoder passwordEncoder ){
         Member member = new Member();
 
         member.email = new Email(createRequest.email());
@@ -42,7 +41,6 @@ public class Member extends AbstractEntity {
 
         return member;
     }
-
     public void activate() {
 //        if (status != MemberStatus.PENDING) {
 //            throw new IllegalStateException("PENDING 상태가 아닙니다.");
@@ -61,14 +59,14 @@ public class Member extends AbstractEntity {
     }
 
     public boolean verifyPassword(String password, PasswordEncoder passwordEncoder) {
-        return passwordEncoder.matches(password, this.passwordHash);
+        return passwordEncoder.matches(password,this.passwordHash);
     }
 
     public void changeNickname(String nickname) {
         this.nickname = requireNonNull(nickname);
     }
 
-    public void changePassword(String password, PasswordEncoder passwordEncoder) {
+    public void changePassword(String password,PasswordEncoder passwordEncoder) {
         this.passwordHash = passwordEncoder.encode(requireNonNull(password));
     }
 
