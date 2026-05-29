@@ -1,4 +1,4 @@
-package toby.spring.splearn.domain;
+package toby.spring.splearn.domain.member;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;

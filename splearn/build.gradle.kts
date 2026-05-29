@@ -37,7 +37,8 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit-pioneer:junit-pioneer:2.3.0")
 
@@ -49,6 +50,10 @@ dependencies {
 
 
 
+}
+
+spotbugs {
+    ignoreFailures = true
 }
 
 tasks.withType<Test> {

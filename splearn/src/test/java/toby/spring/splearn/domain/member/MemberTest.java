@@ -1,4 +1,4 @@
-package toby.spring.splearn.domain;
+package toby.spring.splearn.domain.member;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +13,9 @@ class MemberTest {
 
     Member member;
     PasswordEncoder passwordEncoder;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         this.passwordEncoder = MemberFixture.createPasswordEncoder();
         member = Member.register(MemberFixture.createMemberRegisterRequest(), passwordEncoder);
     }
@@ -23,6 +24,8 @@ class MemberTest {
     @Test
     void createMember() {
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
+        assertThat(member.getDetail().getRegisteredAt()).isNotNull();
+
     }
 
 
@@ -30,12 +33,14 @@ class MemberTest {
     @DisplayName("")
     void activate() {
         // given
+        assertThat(member.getDetail().getActivatedAt()).isNull();
 
         // when
         member.activate();
 
         // then
         assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVE);
+        assertThat(member.getDetail().getActivatedAt()).isNotNull();
     }
 
     @Test
@@ -65,6 +70,8 @@ class MemberTest {
 
         // then
         assertThat(member.getStatus()).isEqualTo(MemberStatus.DEACTIVATED);
+        assertThat(member.getDetail().getDeactivateAt()).isNotNull();
+
 
     }
 
@@ -99,9 +106,9 @@ class MemberTest {
 
     @Test
     void changePassword() {
-        member.changePassword("verysercet2",passwordEncoder);
+        member.changePassword("verysercet2", passwordEncoder);
 
-        assertThat(member.verifyPassword("verysercet2",passwordEncoder)).isTrue();
+        assertThat(member.verifyPassword("verysercet2", passwordEncoder)).isTrue();
     }
 
     @Test
@@ -122,7 +129,18 @@ class MemberTest {
         Member.register(MemberFixture.createMemberRegisterRequest(), passwordEncoder);
     }
 
+    @Test
+    void updateInfo() {
+        member.activate();
+
+        var updateRequest = new MemberInfoUpdateRequest("Leo", "tobd100", "자기소개");
+        member.updateInfo(updateRequest);
+
+        assertThat(member.getNickname()).isEqualTo(updateRequest.nickname());
+        assertThat(member.getDetail().getProfile().address()).isEqualTo(updateRequest.profileAddress());
+        assertThat(member.getDetail().getIntroduction()).isEqualTo(updateRequest.introduction());
 
 
+    }
 
 }

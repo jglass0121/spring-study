@@ -1,14 +1,18 @@
-package toby.spring.splearn.application;
+package toby.spring.splearn.application.member;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import toby.spring.splearn.application.provided.MemberFinder;
-import toby.spring.splearn.application.provided.MemberRegister;
-import toby.spring.splearn.application.required.EmailSender;
-import toby.spring.splearn.application.required.MemberRepository;
-import toby.spring.splearn.domain.*;
+import toby.spring.splearn.application.member.provided.MemberFinder;
+import toby.spring.splearn.application.member.provided.MemberRegister;
+import toby.spring.splearn.application.member.required.EmailSender;
+import toby.spring.splearn.application.member.required.MemberRepository;
+import toby.spring.splearn.domain.member.DuplicateEmailException;
+import toby.spring.splearn.domain.member.Member;
+import toby.spring.splearn.domain.member.MemberRegisterRequest;
+import toby.spring.splearn.domain.member.PasswordEncoder;
+import toby.spring.splearn.domain.shared.Email;
 
 /**
  * 문제 : 조회 변경을 함께 두면 의존하는 오브젝트가 점점 달라지기 시작하여 혼란스럽더

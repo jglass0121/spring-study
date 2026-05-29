@@ -1,6 +1,6 @@
-package toby.spring.splearn.application.required;
+package toby.spring.splearn.application.member.required;
 
-import toby.spring.splearn.domain.Email;
+import toby.spring.splearn.domain.shared.Email;
 
 /**
  *

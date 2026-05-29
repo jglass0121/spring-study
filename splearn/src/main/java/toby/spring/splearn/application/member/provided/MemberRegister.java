@@ -1,8 +1,8 @@
-package toby.spring.splearn.application.provided;
+package toby.spring.splearn.application.member.provided;
 
 import jakarta.validation.Valid;
-import toby.spring.splearn.domain.Member;
-import toby.spring.splearn.domain.MemberRegisterRequest;
+import toby.spring.splearn.domain.member.Member;
+import toby.spring.splearn.domain.member.MemberRegisterRequest;
 
 /**
  *  회원 등록과 관련된 기능을 제공한다.

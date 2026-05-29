@@ -1,4 +1,4 @@
-package toby.spring.splearn.domain;
+package toby.spring.splearn.domain.shared;
 
 import org.junit.jupiter.api.Test;
 

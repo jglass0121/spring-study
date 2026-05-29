@@ -4,9 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.StdIo;
 import org.junitpioneer.jupiter.StdOut;
-import toby.spring.splearn.domain.Email;
-
-import static org.junit.jupiter.api.Assertions.*;
+import toby.spring.splearn.domain.shared.Email;
 
 class DummyEmailSenderTest {
 
