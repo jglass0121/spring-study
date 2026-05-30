@@ -12,11 +12,10 @@ import toby.spring.splearn.domain.member.Member;
 import toby.spring.splearn.domain.member.MemberFixture;
 
 
+//@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @SpringBootTest
 @Transactional
 @Import(SplearnTestConfiguration.class)
-@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-
 record MemberFinderTest(MemberFinder memberFinder, MemberRegister memberRegister, EntityManager entityManager) {
 
     @Test

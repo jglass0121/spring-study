@@ -2,6 +2,7 @@ package toby.spring.splearn.application.member.provided;
 
 import jakarta.validation.Valid;
 import toby.spring.splearn.domain.member.Member;
+import toby.spring.splearn.domain.member.MemberInfoUpdateRequest;
 import toby.spring.splearn.domain.member.MemberRegisterRequest;
 
 /**
@@ -11,5 +12,9 @@ public interface MemberRegister {
     Member register(@Valid MemberRegisterRequest registerRequest);
 
     Member activate(Long memberId);
+
+    Member deactivate(Long memberId);
+
+    Member updateInfo(Long memberId, @Valid MemberInfoUpdateRequest memberInfoupdateRequest);
 
 }
