@@ -3,7 +3,7 @@ package toby.spring.splearn.adapter.security;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import toby.spring.splearn.domain.member.PasswordEncoder;
-
+// 보안과 관련된 것들을 security 패키지.
 @Component
 public class SecurePasswordEncoder implements PasswordEncoder {
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

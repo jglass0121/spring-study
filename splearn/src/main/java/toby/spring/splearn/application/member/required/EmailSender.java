@@ -1,7 +1,6 @@
 package toby.spring.splearn.application.member.required;
 
 import toby.spring.splearn.domain.shared.Email;
-
 /**
  *
  * 이메일을 발송한다.
