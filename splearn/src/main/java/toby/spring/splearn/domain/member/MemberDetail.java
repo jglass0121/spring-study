@@ -1,11 +1,13 @@
 package toby.spring.splearn.domain.member;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import toby.spring.splearn.domain.AbstractEntity;
 
@@ -26,9 +28,11 @@ public class MemberDetail extends AbstractEntity {
     @Embedded
     private Profile profile;
 
+    @Column(columnDefinition = "TEXT")
     private String introduction;
 
     //member가 등록될 때 같이 사용
+    @Column(nullable = false)
     private LocalDateTime registeredAt;
 
     private LocalDateTime activatedAt;
