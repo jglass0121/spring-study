@@ -1,5 +1,7 @@
 package toby.spring.splearn.domain.member;
 
+import org.springframework.test.util.ReflectionTestUtils;
+
 /**
  *
  * util 클래스로
@@ -28,6 +30,20 @@ public class MemberFixture {
             }
 
         };
+    }
+
+    public static Member createMember() {
+        return Member.register(createMemberRegisterRequest(), createPasswordEncoder());
+    }
+
+    public static Member createMember(Long id) {
+        Member member = Member.register(createMemberRegisterRequest(), createPasswordEncoder());
+        ReflectionTestUtils.setField(member, "id", id);
+        return member;
+    }
+
+    public static Member createMember(String email) {
+        return Member.register(createMemberRegisterRequest(email), createPasswordEncoder());
     }
 
 }
