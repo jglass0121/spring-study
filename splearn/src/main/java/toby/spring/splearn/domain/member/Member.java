@@ -15,6 +15,7 @@ import java.util.Objects;
 
 import static jakarta.persistence.FetchType.*;
 import static java.util.Objects.requireNonNull;
+import static org.springframework.util.Assert.*;
 import static org.springframework.util.Assert.state;
 import static toby.spring.splearn.domain.member.MemberStatus.*;
 
@@ -77,7 +78,7 @@ public class Member extends AbstractEntity {
 
 
     public void updateInfo(MemberInfoUpdateRequest updateRequest) {
-        Assert.state(getStatus()== ACTIVE, "등록 완료 상태가 아니면 정보를 수정할 수 없습니다.");
+        state(getStatus()== ACTIVE, "등록 완료 상태가 아니면 정보를 수정할 수 없습니다.");
         this.nickname = Objects.requireNonNull(updateRequest.nickname());
         this.detail.updateInfo(updateRequest);
     }
